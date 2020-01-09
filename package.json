@@ -1,0 +1,25 @@
+{
+  "name": "justnotes",
+  "main": "./lib/justnotes",
+  "version": "0.0.0",
+  "description": "Atom package for basic markdown note keeping with a little spice",
+  "keywords": [
+  ],
+  "activationCommands": {
+    "atom-workspace": "justnotes:to-html"
+  },
+  "repository": "https://github.com/LukasK/justnotes",
+  "license": "MIT",
+  "engines": {
+    "atom": ">=1.0.0 <2.0.0"
+  },
+  "dependencies": {
+  },
+  "consumedServices": {
+    "tree-view": {
+      "versions": {
+        "^1.0.0": "consumeTreeView"
+      }
+    }
+  }
+}

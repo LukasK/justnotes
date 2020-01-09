@@ -1,0 +1,11 @@
+{
+  "context-menu": {
+    ".tree-view .full-menu": [
+      { "type": "separator" },
+      {
+        "label": "Justnotes to Html",
+        "command": "justnotes:to-html"
+      }
+    ]
+  }
+}
