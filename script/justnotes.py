@@ -41,6 +41,12 @@ def main():
     inputDir = os.path.normpath(args.src)
     outputDir = os.path.normpath(args.dst)
 
+    # currently only directories are supported
+    if not os.path.isdir(inputDir) or os.path.islink(inputDir):
+        raise RuntimeError('Only directories supported as input')
+    if os.path.exists(outputDir):
+        raise RuntimeError('Destination already exists')
+
     # deep copy notes root folder
     shutil.copytree(inputDir, outputDir)
 

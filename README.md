@@ -15,6 +15,8 @@ Atom package for basic markdown note keeping with a little spice.
 
 # TODO
 
+- Refresh tree view after writing html
+- Make python script a node module
 - Finish README. What does it do? How? Why??!
 - Finish code todos
 - Add/update tests
