@@ -9,12 +9,15 @@ Atom package for basic markdown note keeping with a little spice.
 - etc.
 
 ![A screenshot of your package](https://github.com/LukasK/justnotes/blob/master/misc/screen.png)
+
 # Prerequisites
 
 - pandoc installation
 
 # TODO
 
+- justnotes.py: add excludes for files not to copy like .git folder etc.
+- justnotes.py l.80: add general excludes like index file, .git folder, etc.; add argument for it
 - Refresh tree view after writing html
 - Make python script a node module
 - Finish README. What does it do? How? Why??!

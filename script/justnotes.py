@@ -81,6 +81,8 @@ def main():
                         continue
                     idxfile.write('\t' * level + '- [{}]({})\n'.format(mdentry.name, relative_to_output(mdentry.path)))
                 for mddir in sorted(dirs, key=lambda entry: entry.name.lower()):
+                    if mddir.name == '.git':
+                        continue
                     idxfile.write('\t' * level + '- [{}]({})\n'.format(mddir.name, relative_to_output(mddir.path)))
                     write_index(mddir.path, level + 1)
             write_index(outputDir)
