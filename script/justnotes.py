@@ -1,12 +1,9 @@
 #!/usr/bin/env python3
 
 # Deep-converts each .md file in a given directory to .html with pandoc.
-# Preserves linkes between .md files, css file references etc.
+# Preserves links between .md files, css file references etc.
 #
-# Run `./gen_html.py --help` to display usage information.
-#
-# Example call:
-# > . gen_html.py -i markdown -o html -c style.css
+# Run `./justnotes.py --help` to display usage information.
 
 def main():
     import logging
@@ -50,7 +47,7 @@ def main():
     # deep copy notes root folder
     shutil.copytree(inputDir, outputDir)
 
-    # add index file
+    # add index.md file - this has to happen early for it to make it onto the .md files list
     indexpath = outputDir + "/index.md"
     if args.index:
         f = open(indexpath, 'w', encoding='utf-8')
@@ -75,19 +72,30 @@ def main():
             for mdentry in sortedmdfiles:
                 if mdentry.path != indexpath:
                     rootpath = mdentry.path
+                    # print(rootpath)
                     prefix = outputDir + '/'
+                    # print(prefix)
                     if rootpath.find(prefix) == 0:
                         rootpath = rootpath.replace(prefix, '', 1)
-                    # put non-top-level notes under their own heading
+                    # print(rootpath)
+                    # print(topic)
+                    # put non-top-level notes with a slash under their own heading
                     slashidx = rootpath.find('/')
                     deeprootpath = rootpath
+                    # print(slashidx)
                     if slashidx > -1:
                         newtopic = rootpath[0:slashidx]
                         deeprootpath = rootpath[slashidx + 1:]
                         if newtopic != topic:
+                            idxout.write('\n----\n')
                             idxout.write('\n\n### {}\n\n'.format(newtopic))
                             topic = newtopic
-                    idxout.write('- [{}]({})\n'.format(deeprootpath, rootpath))
+                        idxout.write('- [{}]({})\n'.format(deeprootpath, rootpath))
+                    else:
+                        if topic:
+                                topic = None
+                                idxout.write('\n----\n')
+                        idxout.write('- [{}]({})\n'.format(deeprootpath, rootpath))
 
     # copy css file to output dir
     cssfile = args.css
